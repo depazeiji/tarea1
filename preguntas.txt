@@ -1,0 +1,12 @@
+1. Pude haber utilizado puppet en todos los proyectos de dsarrollo que he tenido.
+Dos casos:
+  -Desarrollo de un compilador, donde tenía que instalar varias herramientas, como NetBeans, flex, bison, etc.
+  -Desarrollo de aplicación web con control de versiones (LAMP + Git).
+
+2. Sí tiene ventajas.
+  -Permite levantar entornos de desarrollo cercanos a producción (o listos para hacer pruebas en el caso de mis proyectos).
+  -Independiente del SO, tanto host como guest.
+
+3. Me gustó que ya no tuviera que instalar ni modificar archivos manualmente.
+
+4. En preparación de ambientes de cualquier tipo, como los mencionados en la pregunta 1.   
