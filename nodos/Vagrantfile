@@ -1,0 +1,33 @@
+DB_CENTOS_BOX_NAME    = "vStone/centos-7.x-puppet.3.x"
+DB_CENTOS_BOX_VERSION = "4.3.26.1"
+Vagrant.configure(2) do |config|
+  config.vm.box = DB_CENTOS_BOX_NAME
+  config.vm.box_version = DB_CENTOS_BOX_VERSION
+
+  config.vm.provider "virtualbox" do |vb|
+      vb.memory = 1024
+    end
+  
+  config.vm.provision 'puppet' do |puppet|
+      puppet.manifests_path = 'puppet'
+      puppet.manifest_file  = 'site.pp'
+      puppet.options        = '--verbose'
+  end
+
+# --------------------------- NODO 1 -----------------------------------
+  config.vm.define 'nodo1' do |nodo1|
+    # Setup netowrking and port forwarding
+    nodo1.vm.hostname = "cas00.datum.com.gt"
+    nodo1.vm.network 'private_network', ip: '5.5.5.0', netmask: '255.0.0.0'
+    nodo1.vm.network 'forwarded_port', guest: 9042, host: 9001
+  end
+
+# --------------------------- NODO 2 -----------------------------------
+  config.vm.define 'nodo2' do |nodo2|
+    # Setup netowrking and port forwarding
+    nodo2.vm.hostname = "cas01.datum.com.gt"
+    nodo2.vm.network 'private_network', ip: '5.5.5.1', netmask: '255.0.0.0'
+    nodo2.vm.network 'forwarded_port', guest: 9042, host: 9002
+  end
+
+end
